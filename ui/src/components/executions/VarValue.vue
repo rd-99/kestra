@@ -1,5 +1,5 @@
 <template>
-    <el-button-group v-if="isFile(value)">
+    <el-button-group v-if="isFileValid(value)">
         <a class="el-button el-button--small el-button--primary" :href="itemUrl(value)" target="_blank">
             <Download />
             {{ $t('download') }}
@@ -44,6 +44,9 @@
         methods: {
             isFile(value) {
                 return typeof(value) === "string" && value.startsWith("kestra:///")
+            },
+            isFileValid(value) {
+                return this.isFile(value) && this.humanSize && this.humanSize !== "0B"
             },
             isURI(value) {
                 try {
