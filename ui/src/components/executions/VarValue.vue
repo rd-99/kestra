@@ -46,6 +46,7 @@
                 return typeof(value) === "string" && value.startsWith("kestra:///")
             },
             isFileValid(value) {
+                // we don't want to display the file if it's not a file or if the size is 0
                 return this.isFile(value) && this.humanSize && this.humanSize !== "0B"
             },
             isURI(value) {
